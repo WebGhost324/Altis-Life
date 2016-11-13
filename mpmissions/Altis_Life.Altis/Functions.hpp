@@ -22,25 +22,49 @@ class Life_Client_Core {
         class setupActions {};
         class setupEVH {};
         class survival {};
-        class welcomeNotification {};
 		class initAdac {};
     };
-
-    class DynMarket
-    {
-        file = "core\DynMarket";
-        class bought {};
-        class update {};
-        class DisplayPrices {};
-        class LoadIntoListbox {};
-        class ForcePrice {};
-        class DYNMARKET_getPrice {};
-    };
-
+	
+	class welcome {
+		file = "core\welcomescreen";
+		class welcomescreen {};
+		class openwelcomescreen {};
+	};
+	
 	class Adac {
 		file = "core\adac";
 		class adacMarkers {};
 		class adacLoadout {};
+	};
+	
+	class CellPhone {
+        file = "core\cellphone";
+        class cellPhoneCheck {};
+        class setupCellPhone {};
+        class messagesMenu {};
+        class lbChanged {};
+        class deleteMessage {};
+        class replyMessage {};
+    };
+	
+	class Fahrschule
+	{
+		file="core\Fahrschule";
+		class abfrage {};
+		class LKW_Pruefung {};
+		class PKW_Pruefung {};
+		class theoScript {};
+		class HELI_Pruefung {};
+		class start {};
+	};
+	
+	class Economy {
+        file="core\economy";
+        class marketGrab {};
+        class openEconomy {};
+        class retrievePrices {};
+        class updateEconomy {};
+        class updatePrice {};
 	};
 
     class Actions {
@@ -69,6 +93,7 @@ class Life_Client_Core {
         class removeContainer {};
         class repairTruck {};
         class restrainAction {};
+		class revokeLicense {};
         class robAction {};
         class searchAction {};
         class searchVehAction {};
@@ -230,11 +255,6 @@ class Life_Client_Core {
         class whereAmI {};
     };
 
-	class RageCore {
-		file = "core\ragecore";
-		class initIntro {};
-	};
-
     class Gangs {
         file = "core\gangs";
         class createGang {};
@@ -387,4 +407,33 @@ class Life_Client_Core {
         class vehTakeItem {};
         class vInteractionMenu {};
     };
+};
+
+class felixvonstudsinske
+{
+	tag = "fvs";
+	class perso
+	{
+		file = "core\pmenu\perso";
+		class perso_laden {};
+		class persoCheck {};
+		class persoCheck_aenderung {};
+		class persoErgebnis {};
+		class persoNeu {};
+		class updateTag {};
+		class updateTagA {};
+		class updateMonat {};
+		class updateMonatA {};
+		class updateHsnr {};
+		class updateHsnrA {};
+		class updateStrasse {};
+		class updateStrasseA {};
+		class persoBeantragen {};
+		class persoBeantragenAenderung {};
+		class persoInteractionMenu {};
+		class zeigePerso {};
+		class updatePersoBild {};
+		class updatePersoBildA {};
+		class aenderePerso {};
+	};
 };

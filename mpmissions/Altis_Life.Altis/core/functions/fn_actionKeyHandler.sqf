@@ -16,6 +16,7 @@ _isWater = surfaceIsWater (visiblePositionASL player);
 if (playerSide isEqualTo west && {player getVariable ["isEscorting",false]}) exitWith {
     [] call life_fnc_copInteractionMenu;
 };
+
 if (playerSide isEqualTo civilian && {player getVariable ["isEscorting",false]}) exitWith {
     [] call life_fnc_civInteractionMenu;
 };
@@ -64,10 +65,10 @@ if ((_curObject isKindOf "B_supplyCrate_F" || _curObject isKindOf "Box_IND_Grena
     };
 };
 
-private _vaultHouse = ALTIS_TANOA("Land_Research_house_V1_F","Land_Medevac_house_V1_F");
-_altisArray = [16019.5,16952.9,0];
-_tanoaArray = [11074.2,11501.5,0.00137329];
-private _pos = ALTIS_TANOA(_altisArray,_tanoaArray);
+private _vaultHouse = [[["Altis", "Land_Research_house_V1_F"], ["Tanoa", "Land_Medevac_house_V1_F"]]] call TON_fnc_terrainSort;
+private _altisArray = [16019.5,16952.9,0];
+private _tanoaArray = [11074.2,11501.5,0.00137329];
+private _pos = [[["Altis", _altisArray], ["Tanoa", _tanoaArray]]] call TON_fnc_terrainSort;
 
 if (_curObject isKindOf "House_F" && {player distance _curObject < 12} || ((nearestObject [_pos,"Land_Dome_Big_F"]) isEqualTo _curObject || (nearestObject [_pos,_vaultHouse]) isEqualTo _curObject)) exitWith {
     [_curObject] call life_fnc_houseMenu;
@@ -97,8 +98,7 @@ if (_curObject isKindOf "Man" && !(_curObject isKindOf "Animal") && {!alive _cur
 if (isPlayer _curObject && _curObject isKindOf "Man") then {
     if ((_curObject getVariable ["restrained",false]) && !dialog && playerSide isEqualTo west) then {
         [_curObject] call life_fnc_copInteractionMenu;
-    };
-	if ((_curObject getVariable ["restrained",false]) && !dialog && playerSide isEqualTo civilian) then {
+    } else if ((_curObject getVariable ["restrained",false]) && !dialog && playerSide isEqualTo civilian) then {
         [_curObject] call life_fnc_civInteractionMenu;
     };
 } else {

@@ -68,6 +68,18 @@ class CfgRemoteExec {
         F(TON_fnc_clientGetKey,CLIENT)
         F(TON_fnc_clientMessage,CLIENT)
         F(TON_fnc_player_query,CLIENT)
+		
+		F(life_fnc_setupCellPhone,CLIENT) //Handy
+		
+		F(fvs_fnc_perso_laden,CLIENT) // Perso
+		F(fvs_fnc_persoBeantragen,CLIENT) // Perso
+		F(fvs_fnc_persoCheck,CLIENT) // Perso
+		F(fvs_fnc_persoErgebnis,CLIENT) // Perso
+		F(fvs_fnc_persoNeu,CLIENT) // Perso
+		F(fvs_fnc_updateMonat,CLIENT) // Perso
+		F(fvs_fnc_updateTag,CLIENT) // Perso
+		F(fvs_fnc_zeigePerso,CLIENT) // Perso
+		F(fvs_fnc_updatePersoBild,CLIENT) // Perso 
 
         /* Server only functions */
         F(BIS_fnc_execVM,SERVER)
@@ -110,10 +122,19 @@ class CfgRemoteExec {
         F(TON_fnc_vehicleUpdate,SERVER)
         F(TON_fnc_handleBlastingCharge,SERVER)
         F(TON_fnc_houseGarage,SERVER)
-		F(TON_fnc_playerLogged,SERVER) //DynMarket
-		F(TON_fnc_getupdate,SERVER) //DynMarket
-		F(TON_fnc_changePrice,SERVER) //DynMarket
+		
+		F(TON_fnc_adjustPrices,SERVER)
+		// F(TON_fnc_playerLogged,SERVER) //DynMarket
+		// F(TON_fnc_getupdate,SERVER) //DynMarket
+		// F(TON_fnc_changePrice,SERVER) //DynMarket
 		F(TON_fnc_insureCar,SERVER) //Versicherung
+		F(DB_fnc_cellPhoneRequest,SERVER) //Handy
+        F(DB_fnc_saveCellPhone,SERVER) //Handy
+		F(DB_fnc_getRealTime,SERVER) //Handy
+		
+		F(DB_fnc_persoRequest,SERVER) // Perso
+		F(DB_fnc_persoInsert,SERVER) // Perso
+		F(DB_fnc_persoUpdate,SERVER) // Perso
 
         /* HeadlessClient only functions */
         F(HC_fnc_addContainer,HC)
@@ -149,6 +170,8 @@ class CfgRemoteExec {
         F(HC_fnc_wantedProfUpdate,HC)
         F(HC_fnc_wantedRemove,HC)
 		F(HC_fnc_insureCar,HC) //Versicherung
+		F(HC_fnc_cellPhoneRequest,HC)
+        F(HC_fnc_saveCellPhone,HC)
 
         /* Functions for everyone */
         F(BIS_fnc_effectKilledAirDestruction,ANYONE)
@@ -166,7 +189,9 @@ class CfgRemoteExec {
         F(life_fnc_setFuel,ANYONE)
         F(life_fnc_simDisable,ANYONE)
         F(SPY_fnc_notifyAdmins,ANYONE)
-		F(life_fnc_update,ANYONE) //DynMarket
+		
+		
+		// F(life_fnc_update,ANYONE) //DynMarket
     };
 
     class Commands {

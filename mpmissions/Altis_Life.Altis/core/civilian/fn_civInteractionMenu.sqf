@@ -38,7 +38,7 @@ if (player getVariable ["isEscorting",false]) then {
 };
 
 //Set Unrestrain Button
-if (life_inv_key > 1 || life_inv_boltCutter > 1) then {
+if (life_inv_key > 0 || life_inv_boltCutter > 0) then {
 	_Btn1 ctrlSetText localize "STR_pInAct_Unrestrain";
 	_Btn1 buttonSetAction "[life_pInact_curTarget] call life_fnc_unrestrain; closeDialog 0;";
 } else {

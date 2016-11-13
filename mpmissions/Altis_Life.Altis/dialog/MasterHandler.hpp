@@ -29,5 +29,16 @@
 #include "FuelStat.hpp"
 #include "newsStation.hpp"
 
-#include "dynmarket_changeprice.hpp"
-#include "dynmarket_prices.hpp"
+#include "revoke_license.hpp"
+#include "pruefung.hpp"
+#include "theoDIA.hpp"
+
+#include "market.hpp"
+
+#include "oldmessages.hpp"
+#include "cell_phone_new.hpp" 
+
+#include "welcome.hpp"
+
+#include "Personalausweis.hpp"
+// #include "uiPerso.hpp"

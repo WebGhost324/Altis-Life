@@ -10,13 +10,13 @@ private ["_end"];
 player addRating 99999999;
 waitUntil {!(isNull (findDisplay 46))};
 
-if ((FETCH_CONST(life_medicLevel)) < 1 && (FETCH_CONST(life_adminlevel) isEqualTo 0)) exitWith {
+if ((FETCH_CONST(life_medicLevel) isEqualTo 0) && (FETCH_CONST(life_adminlevel) isEqualTo 0)) exitWith {
     ["Notwhitelisted",false,true] call BIS_fnc_endMission;
     sleep 35;
 };
 
 if ((str(player) in ["medic_7","medic_8","medic_9","medic_10"])) then {
-    if ((FETCH_CONST(life_mediclevel)) <9) then {
+    if ((FETCH_CONST(life_mediclevel)) < 9) then {
         ["NotWhitelisted",false,true] call BIS_fnc_endMission;
         sleep 35;
     };

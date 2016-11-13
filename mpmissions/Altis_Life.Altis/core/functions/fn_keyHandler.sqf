@@ -114,7 +114,6 @@ switch (_code) do {
         };
     };
 	
-	
 	case 59: {
 		switch (player getVariable["Earplugs",0]) do {
 			 case 0: {hint composeText [ image "icons\sound.paa"," 90% Leiser"]; 1 fadeSound 0.1; player setVariable ["Earplugs", 10]; };
@@ -122,9 +121,8 @@ switch (_code) do {
 		};
 		_handled = true;
 	};
-	
 
-    //Restraining (Shift + R)
+     //Restraining (Shift + R)
     case 19: {
         if (_shift) then {_handled = true;};
         if (_shift && playerSide isEqualTo west && {!isNull cursorObject} && {cursorObject isKindOf "Man"} && {(isPlayer cursorObject)} && {(side cursorObject isEqualTo civilian)} && {alive cursorObject} && {cursorObject distance player < 3.5} && {!(cursorObject getVariable "Escorting")} && {!(cursorObject getVariable "restrained")} && {speed cursorObject < 1}) then {
@@ -137,7 +135,7 @@ switch (_code) do {
         };
 		if (_shift && playerSide isEqualTo civilian && {!isNull cursorObject} && {cursorObject isKindOf "Man"} && {(isPlayer cursorObject)} && {(side cursorObject in [civilian,west])} && {alive cursorObject} && {cursorObject distance player < 3.5} && {!(cursorObject getVariable "Escorting")} && {!(cursorObject getVariable "restrained")} && {speed cursorObject < 1}) then {
             // [] call life_fnc_restrainAction;
-			if([false,"zipties",2] call life_fnc_handleInv) then {
+			if([false,"handcuffs",1] call life_fnc_handleInv) then {
 				[] call life_fnc_restrainAction;
 			} else {
 				hint "Du hast keine Handschellen!";
@@ -145,11 +143,6 @@ switch (_code) do {
         };
     };
 
-	
-	 
-	 
-	
-	
     //Knock out, this is experimental and yeah... (Shift + G)
     case 34: {
         if (_shift) then {_handled = true;};
@@ -242,17 +235,17 @@ switch (_code) do {
     };
 
     //O Key
-    case 24: {
-        if (_shift) then {
-            if (soundVolume != 1) then {
-                1 fadeSound 1;
-                systemChat localize "STR_MISC_soundnormal";
-            } else {
-                1 fadeSound 0.1;
-                systemChat localize "STR_MISC_soundfade";
-            };
-        };
-    };
+    // case 24: {
+        // if (_shift) then {
+            // if (soundVolume != 1) then {
+                // 1 fadeSound 1;
+                // systemChat localize "STR_MISC_soundnormal";
+            // } else {
+                // 1 fadeSound 0.1;
+                // systemChat localize "STR_MISC_soundfade";
+            // };
+        // };
+    // };
 
     //U Key
     case 22: {

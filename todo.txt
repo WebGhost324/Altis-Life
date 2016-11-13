@@ -1,0 +1,13 @@
+NPC erstellen (Perso ändern)
+
+// Altis Life Versionen ohne "Config_Licenses"
+this allowDamage false;
+this enableSimulation false;
+this addAction[format["%1 ($%2)",["license_civ_einbuergerung"] call life_fnc_varToStr,[(["einbuergerung"] call life_fnc_licensePrice)] call life_fnc_numberText],life_fnc_buyLicense,"einbuergerung",0,false,false,"",' !license_civ_einbuergerung && playerSide == civilian '];
+this addAction["Persoenliche Daten aendern (Kosten: $250.000)",fvs_fnc_aenderePerso,"",0,false,false,"",' license_civ_einbuergerung && playerSide == civilian '];
+
+// Altis Life Versionen mit "Config_Licenses"
+this allowDamage false;
+this enableSimulation false;
+this addAction[format["%1 fuer $%2 abholen",localize (getText(missionConfigFile >> "Licenses" >> "einbuergerung" >> "displayName")),   [(getNumber(missionConfigFile >> "Licenses" >> "einbuergerung" >> "price"))] call life_fnc_numberText],life_fnc_buyLicense,"einbuergerung",0,false,false,"",' !license_civ_einbuergerung && playerSide == civilian '];
+this addAction["Persoenliche Daten aendern (Kosten: $250.000)",fvs_fnc_aenderePerso,"",0,false,false,"",' license_civ_einbuergerung && playerSide == civilian '];

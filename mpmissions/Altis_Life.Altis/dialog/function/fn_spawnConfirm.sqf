@@ -59,16 +59,4 @@ if (life_spawn_point isEqualTo []) then {
     // [] call life_fnc_welcomeNotification;
 // };
 [] call life_fnc_playerSkins;
-
-[] spawn {
-	cutText ["","BLACK IN"];
- 
-	if(life_firstSpawn) then {
-		private["_handle"];
-		_handle = [] spawn life_fnc_initIntro;
-		waitUntil {scriptDone _handle};
-		life_firstSpawn = false;
-	};
-};
-
 [] call life_fnc_hudSetup;

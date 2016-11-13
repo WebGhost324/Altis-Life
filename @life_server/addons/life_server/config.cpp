@@ -27,6 +27,14 @@ class CfgFunctions {
             class mresString {};
             class updatePartial {};
         };
+		
+		class perso
+		{
+			file = "\life_server\Functions\MySQL\perso";
+			class persoRequest {};
+			class persoInsert {};
+			class persoUpdate {};
+		};
     };
 
     class Life_System {
@@ -76,18 +84,11 @@ class CfgFunctions {
             class vehicleUpdate {};
             class recupkeyforHC {};
             class handleBlastingCharge {};
+			class terrainSort {};
 			class insureCar {};
-        };
-
-        class DynMarket
-        {
-            file = "\life_server\Functions\DynMarket";
-            class calculatePrices {};
-            class config {};
-            class getUpdate {};
-            class HandleDB {};
-            class playerLogged {};
-            class sleeper {};
+			class cellPhoneRequest {};
+            class saveCellPhone {};
+            class getRealTime {};
         };
 
         class Housing {
@@ -104,6 +105,13 @@ class CfgFunctions {
             class houseCleanup {};
             class houseGarage {};
         };
+		
+		class Economy {
+            file = "\life_server\Functions\Economy";
+            class adjustPrices {};
+            class loadPrices {};
+            class syncPrices {};
+        }
 
         class Gangs {
             file = "\life_server\Functions\Gangs";

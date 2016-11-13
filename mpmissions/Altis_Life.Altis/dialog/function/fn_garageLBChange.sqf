@@ -7,7 +7,7 @@
     Can't be bothered to answer it.. Already deleted it by accident..
 */
 disableSerialization;
-private["_control","_index","_className","_classNameLife","_dataArr","_vehicleColor","_vehicleInfo","_trunkSpace","_sellPrice","_retrievePrice","_sellMultiplier","_insurance","_insuranceMultiplier","_price","_storageFee","_purchasePrice","_insurancePrice"];
+private ["_control","_index","_className","_classNameLife","_dataArr","_vehicleColor","_vehicleInfo","_trunkSpace","_sellPrice","_retrievePrice","_sellMultiplier","_price","_storageFee","_purchasePrice"];
 _control = _this select 0;
 _index = _this select 1;
 
@@ -60,10 +60,9 @@ _insurancePrice = _purchasePrice * _insuranceMultiplier;
 
 if (!(_sellPrice isEqualType 0) || _sellPrice < 1) then {_sellPrice = 500;};
 if (!(_retrievePrice isEqualType 0) || _retrievePrice < 1) then {_retrievePrice = 500;};
-if (!(_insurancePrice isEqualType 0) || _insurancePrice < 1) then {_insurancePrice = 500;};
 
-(CONTROL(2800,2803)) ctrlSetStructuredText parseText format[
-	(localize "STR_Shop_Veh_UI_RetrievalP")+ " <t color='#8cff9b'>$%1</t><br/>
+(CONTROL(2800,2803)) ctrlSetStructuredText parseText format [
+    (localize "STR_Shop_Veh_UI_RetrievalP")+ " <t color='#8cff9b'>$%1</t><br/>
 	" +(localize "STR_Shop_Veh_UI_SellP")+ " <t color='#8cff9b'>$%2</t><br/>
 	" +(localize "STR_Shop_Veh_UI_InsureP")+ " <t color='#8cff9b'>$%9</t><br/>
 	" +(localize "STR_Shop_Veh_UI_InsureS")+ " %10<br/>

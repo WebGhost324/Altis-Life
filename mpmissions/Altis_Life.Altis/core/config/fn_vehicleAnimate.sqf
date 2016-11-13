@@ -58,11 +58,5 @@ if (!_preset) then
             _vehicle animate ["HideBumper1", 0];
             _vehicle setVariable ["lights",false,true];
         };
-		
-		case "adac_offroad":
-		{
-			_vehicle animate ["HidePolice", 0];
-			_vehicle setVariable["lights",false,true];
-		};
     };
 };

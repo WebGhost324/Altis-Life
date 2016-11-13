@@ -86,6 +86,20 @@ life_istazed = false;
 life_isknocked = false;
 life_vehicles = [];
 
+theoPunkte = 0;
+
+//Perso
+fvs_persoReady = false;
+fvs_hakenregeln = false;
+fvs_checking = false;
+fvs_hakenrichtig = false;
+fvs_namenInfo = false;
+fvs_checking_a = false;
+fvs_namen_a = false;
+fvs_hakendaten = false;
+
+ws_spawnReady = false;
+
 /*
     Master Array of items?
 */

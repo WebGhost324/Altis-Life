@@ -15,7 +15,7 @@ life_session_completed = false;
 _timeStamp = diag_tickTime;
 diag_log "----------------------------------------------------------------------------------------------------";
 diag_log "--------------------------------- Starting Altis Life Client Init ----------------------------------";
-diag_log "------------------------------------------ Version 4.5 -------------------------------------------";
+diag_log "------------------------------------------ Version 5.0.0 -------------------------------------------";
 diag_log "----------------------------------------------------------------------------------------------------";
 waitUntil {!isNull player && player == player}; //Wait till the player is ready
 [] call compile preprocessFileLineNumbers "core\clientValidator.sqf";
@@ -34,6 +34,14 @@ diag_log "::Life Client:: Setting up user actions";
 [] call life_fnc_setupActions;
 
 diag_log "::Life Client:: User actions completed";
+
+diag_log "::Life Client:: Setting up cellphone";
+
+if (getNumber(missionConfigFile >> "CellPhone_Settings" >> "sqlMessages_toggle") == 1) then
+{
+    [] call life_fnc_cellPhoneCheck;
+};
+
 diag_log "::Life Client:: Waiting for server functions to transfer..";
 waitUntil {(!isNil "TON_fnc_clientGangLeader")};
 
@@ -68,6 +76,17 @@ waitUntil {life_session_completed};
 //diag_log "::Life Client:: Group Base Execution";
 [] spawn life_fnc_escInterupt;
 
+0 spawn life_fnc_welcomescreen;
+waitUntil {!isNull (findDisplay 9875)};
+waitUntil {isNull (findDisplay 9875)};
+
+diag_log "::Client:: Pruefe Personalausweisdaten.";
+0 cutText ["Ueberpruefe Daten des Personalausweises...","BLACK FADED"];
+[] call fvs_fnc_perso_laden;
+0 cutFadeOut 99999999;
+waitUntil{fvs_persoReady};
+
+
 //Set bank amount for new players
 switch (playerSide) do {
     case west: {
@@ -80,8 +99,8 @@ switch (playerSide) do {
         life_paycheck = LIFE_SETTINGS(getNumber,"paycheck_med");
     };
 	case east: {
-		life_paycheck = LIFE_SETTINGS(getNumber,"paycheck_adac");
-	};
+        life_paycheck = LIFE_SETTINGS(getNumber,"paycheck_adac");
+    };
 };
 
 switch (playerSide) do {
@@ -100,10 +119,10 @@ switch (playerSide) do {
         waitUntil {scriptDone _handle};
     };
 	case east: {
-        //Initialize Medics and blah
+		// Initialize ADAC and blah
         _handle = [] spawn life_fnc_initAdac;
         waitUntil {scriptDone _handle};
-    };
+	};
 };
 
 player setVariable ["restrained",false,true];
@@ -175,7 +194,3 @@ life_hideoutBuildings = [];
 diag_log "----------------------------------------------------------------------------------------------------";
 diag_log format ["               End of Altis Life Client Init :: Total Execution Time %1 seconds ",(diag_tickTime) - _timeStamp];
 diag_log "----------------------------------------------------------------------------------------------------";
-
-
-DYNAMICMARKET_boughtItems = [];
-[player] remoteExec ["TON_fnc_playerLogged",RSERV];

@@ -66,12 +66,11 @@ if (life_server_extDB_notLoaded isEqualType []) exitWith {};
 ["CALL deleteDeadVehicles",1] call DB_fnc_asyncCall;
 ["CALL deleteOldHouses",1] call DB_fnc_asyncCall;
 ["CALL deleteOldGangs",1] call DB_fnc_asyncCall;
-["CALL deleteInactiveWanteds",1] call DB_fnc_asyncCall;
 
 _timeStamp = diag_tickTime;
 diag_log "----------------------------------------------------------------------------------------------------";
 diag_log "---------------------------------- Starting Altis Life Server Init ---------------------------------";
-diag_log "------------------------------------------ Version 4.5 -------------------------------------------";
+diag_log "------------------------------------------ Version 5.0.0 -------------------------------------------";
 diag_log "----------------------------------------------------------------------------------------------------";
 
 if (LIFE_SETTINGS(getNumber,"save_civilian_position_restart") isEqualTo 1) then {
@@ -127,15 +126,12 @@ master_group attachTo[bank_obj,[0,0,0]];
 life_adminLevel = 0;
 life_medicLevel = 0;
 life_copLevel = 0;
-life_adacLevel =0;
-life_seklevel = 0;
 CONST(JxMxE_PublishVehicle,"false");
 
 /* Setup radio channels for west/independent/civilian */
 life_radio_west = radioChannelCreate [[0, 0.95, 1, 0.8], "Side Channel", "%UNIT_NAME", []];
 life_radio_civ = radioChannelCreate [[0, 0.95, 1, 0.8], "Side Channel", "%UNIT_NAME", []];
 life_radio_indep = radioChannelCreate [[0, 0.95, 1, 0.8], "Side Channel", "%UNIT_NAME", []];
-life_radio_east = radioChannelCreate [[0, 0.95, 1, 0.8], "Side Channel", "%UNIT_NAME", []];
 
 /* Set the amount of gold in the federal reserve at mission start */
 fed_bank setVariable ["safe",count playableUnits,true];
@@ -182,10 +178,10 @@ publicVariable "TON_fnc_playtime_values_request";
 
 
 /* Setup the federal reserve building(s) */
-private _vaultHouse = ALTIS_TANOA("Land_Research_house_V1_F","Land_Medevac_house_V1_F");
-_altisArray = [16019.5,16952.9,0];
-_tanoaArray = [11074.2,11501.5,0.00137329];
-private _pos = ALTIS_TANOA(_altisArray,_tanoaArray);
+private _vaultHouse = [[["Altis", "Land_Research_house_V1_F"], ["Tanoa", "Land_Medevac_house_V1_F"]]] call TON_fnc_terrainSort;
+private _altisArray = [16019.5,16952.9,0];
+private _tanoaArray = [11074.2,11501.5,0.00137329];
+private _pos = [[["Altis", _altisArray], ["Tanoa", _tanoaArray]]] call TON_fnc_terrainSort;
 
 _dome = nearestObject [_pos,"Land_Dome_Big_F"];
 _rsb = nearestObject [_pos,_vaultHouse];
@@ -201,6 +197,9 @@ _rsb allowDamage false;
 life_server_isReady = true;
 publicVariable "life_server_isReady";
 
+/* Start dynamic market syncing */
+[] spawn TON_fnc_syncPrices;
+
 /* Initialize hunting zone(s) */
 aiSpawn = ["hunting_zone",30] spawn TON_fnc_huntingZone;
 
@@ -215,5 +214,3 @@ publicVariable "life_attachment_point";
 diag_log "----------------------------------------------------------------------------------------------------";
 diag_log format ["               End of Altis Life Server Init :: Total Execution Time %1 seconds ",(diag_tickTime) - _timeStamp];
 diag_log "----------------------------------------------------------------------------------------------------";
-
-[] execVM "\life_server\Functions\DynMarket\fn_config.sqf";

@@ -129,17 +129,6 @@ class Life_cell_phone {
             w = 0.2;
             h = (1 / 25);
         };
-		
-		class AdacRequest : life_RscButtonMenu {
-			idc = 3023;
-			text = "$STR_CELL_AdacRequest";
-			colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.3843])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.7019])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.8862])", 0.5};
-			onButtonClick = "[] call TON_fnc_cell_adacrequest";
-			x = 0.32;
-			y = 0.45;
-			w = 0.2;
-			h = (1 / 25);
-		};
 
         class CloseButtonKey: Life_RscButtonMenu {
             idc = -1;
@@ -149,6 +138,18 @@ class Life_cell_phone {
             y = 0.51 + (1 / 50);
             w = (6.25 / 40);
             h = (1 / 25);
+        };
+		
+		class MessagesButtonKey: Life_RscButtonMenu {
+            idc = 3029;
+            text = "Messages";
+            onButtonClick = "[] spawn life_fnc_messagesMenu";
+            x = 0.53;
+            y = 0.45;
+            w = 0.2;
+            h = (1 / 25);
+            colorText[] = {1,1,1,1};
+            colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.3843])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.7019])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.8862])", 0.5};
         };
     };
 };

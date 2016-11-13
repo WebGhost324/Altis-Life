@@ -11,7 +11,7 @@ _packet = [getPlayerUID player,(profileName),playerSide,CASH,BANK];
 _array = [];
 _alive = alive player;
 _position = getPosATL player;
-_flag = switch (playerSide) do {case west: {"cop"}; case civilian: {"civ"}; case independent: {"med"}; case east: {"adac"};};
+_flag = switch (playerSide) do {case west: {"cop"}; case civilian: {"civ"}; case east: {"adac"}; case independent: {"med"};};
 
 {
     _varName = LICENSE_VARNAME(configName _x,_flag);
@@ -41,4 +41,22 @@ if (life_HC_isActive) then {
     _packet remoteExecCall ["HC_fnc_updateRequest",HC_Life];
 } else {
     _packet remoteExecCall ["DB_fnc_updateRequest",RSERV];
+};
+
+
+/*
+	Saves the cellphone information to the database.
+	Add this to the end of the file.
+	- Panda
+*/
+
+_messages = player getVariable "cellphone_messages";
+
+if (life_HC_isActive) then 
+{
+    [getPlayerUid player, _messages] remoteExecCall ["HC_fnc_saveCellPhone",HC_Life];
+} 
+else 
+{
+    [getPlayerUid player, _messages] remoteExecCall ["DB_fnc_saveCellPhone",2];
 };

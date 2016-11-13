@@ -47,14 +47,9 @@ if (player getVariable ["isEscorting",false]) then {
     { _x ctrlShow false; } forEach [_Btn1,_Btn2,_Btn3,_Btn5,_Btn6,_Btn7,_Btn8];
 };
 
-
 //Set Unrestrain Button
-if (life_inv_key > 1) then {
-	_Btn1 ctrlSetText localize "STR_pInAct_Unrestrain";
-	_Btn1 buttonSetAction "[life_pInact_curTarget] call life_fnc_unrestrain; closeDialog 0;";
-} else {
-	_Btn1 ctrlEnable false;
-};
+_Btn1 ctrlSetText localize "STR_pInAct_Unrestrain";
+_Btn1 buttonSetAction "[life_pInact_curTarget] call life_fnc_unrestrain; closeDialog 0;";
 
 //Set Check Licenses Button
 _Btn2 ctrlSetText localize "STR_pInAct_checkLicenses";

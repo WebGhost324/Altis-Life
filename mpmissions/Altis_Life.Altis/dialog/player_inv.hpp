@@ -240,7 +240,7 @@ class playerSettings {
 			y = 0.7016 * safezoneH + safezoneY;
 			w = 0.028875 * safezoneW;
 			h = 0.0504 * safezoneH;
-			onButtonClick = "createDialog ""Life_cell_phone"";";
+			onButtonClick = "if(getNumber(missionConfigFile >> ""CellPhone_Settings"" >> ""use_old_gui"") == 1) then { createDialog ""Life_cell_phone""; } else { createDialog ""Life_cell_phone_new""; };";
 			tooltip = $STR_PM_CellPhone;
 			colorBackground[] = {-1,-1,-1,-1};
 			colorBackgroundFocused[] = {1,1,1,0.12};
@@ -290,7 +290,7 @@ class playerSettings {
 			y = 0.7016 * safezoneH + safezoneY;
 			w = 0.028875 * safezoneW;
 			h = 0.0504 * safezoneH;
-			onButtonClick = "createDialog ""life_dynmarket_prices"";";
+			onButtonClick = "[] call life_fnc_OpenEconomy";
 			tooltip = "Markt"; //--- ToDo: Localize;
 			colorBackground[] = {-1,-1,-1,-1};
 			colorBackgroundFocused[] = {1,1,1,0.12};
@@ -350,6 +350,16 @@ class playerSettings {
 			colorText[] = {1,1,1,1};
 			colorDisabled[] = {1,0,0,0.1};
 			tooltip = $STR_PM_WantedList;
+		};
+		class perso_idcard: Life_RscButtonMenu {
+			onButtonClick = "private[""_rang_1""]; _rang_1 = switch(playerSide) do {case west: {str(call life_coplevel)};case independent: {str(call life_mediclevel)};case civilian: {""""};case east: {""""};}; [player,_rang_1] remoteExecCall [""fvs_fnc_zeigePerso"",player]; closeDialog 0;";
+			idc = -1;
+			text = "ID CARD";
+			x = 0.738657;
+			y = 0.849;
+			w = 0.15625;
+			h = 0.04;
+			tooltip = "Meinen Personal-/Dienstausweis ansehen \/ Take a look on my ID card";
 		};
 	};
 };

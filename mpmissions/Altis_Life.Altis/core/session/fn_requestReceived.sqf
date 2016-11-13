@@ -110,6 +110,7 @@ switch (playerSide) do {
             player setDamage ((_this select 9) select 2);
         };
     };
+	
 	case east: {
         CONST(life_adacLevel, parseNumber(_this select 7));
         CONST(life_coplevel,0);

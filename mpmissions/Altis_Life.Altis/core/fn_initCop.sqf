@@ -16,20 +16,18 @@ if (life_blacklisted) exitWith {
     sleep 30;
 };
 
-if ((FETCH_CONST(life_coplevel)) < 1) exitWith {
+if ((FETCH_CONST(life_coplevel) isEqualTo 0)) exitWith {
     ["Notwhitelisted",false,true] call BIS_fnc_endMission;
     sleep 35;
 };
 
 
 if ((str(player) in ["cop_16","cop_17","cop_18","cop_19"])) then {
-    if ((FETCH_CONST(life_coplevel)) <9) then {
+    if ((FETCH_CONST(life_coplevel)) < 9) then {
         ["NotWhitelisted",false,true] call BIS_fnc_endMission;
         sleep 35;
     };
 };
-
-
 
 player setVariable ["rank",(FETCH_CONST(life_coplevel)),true];
 [] call life_fnc_spawnMenu;
